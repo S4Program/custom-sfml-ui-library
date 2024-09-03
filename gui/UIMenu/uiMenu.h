@@ -14,8 +14,11 @@ class UIMenu : public sf::Drawable
 public:
     virtual void toggle(bool arg);
     virtual void outlineMouseEvent();
+    virtual void buttonsEvent();
 
+    virtual void resetComponents();
     virtual void draw(sf::RenderTarget &window, sf::RenderStates state) const = 0;
+    virtual void update(sf::View camera) = 0; //making this pure virtual because there are different types of menus
 
     virtual void addElement(UIElement* element);
     virtual void removeElement(int index);

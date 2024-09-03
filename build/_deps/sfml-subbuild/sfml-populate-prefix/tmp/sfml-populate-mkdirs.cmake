@@ -13,7 +13,7 @@ file(MAKE_DIRECTORY
   "D:/VcProj/ownUILib/build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp"
 )
 
-set(configSubDirs )
+set(configSubDirs Debug)
 foreach(subDir IN LISTS configSubDirs)
     file(MAKE_DIRECTORY "D:/VcProj/ownUILib/build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/${subDir}")
 endforeach()

@@ -25,6 +25,7 @@ void gui::DefaultMenu::update(sf::View camera)
 
 //--- Menu's events
     UIMenu::outlineMouseEvent();
+    UIMenu::buttonsEvent();    
 
     if(closeButton.isPressed().first) // If the menu was closed by a button
     {
@@ -52,18 +53,23 @@ void gui::DefaultMenu::setPosition(sf::Vector2f position)
     outlineBox.setPosition(position);
     closeButton.setPosition(sf::Vector2f(position.x + size.x - outlineThickness, position.y));
 
-    sf::Vector2f previousPosition = box.getPosition();
-    for(UIElement* element : elements)
-    {
-        element->setPosition(previousPosition + element->getPadding());
-        previousPosition += sf::Vector2f(0, previousPosition.y + element->getPadding().y);
-    }
+    gui::UIMenu::resetComponents();
+}
+
+gui::DefaultMenu::DefaultMenu(std::string title, sf::Vector2f size, sf::Vector2f position, sf::Color boxColor, sf::Color outlineColor, float outlineThickness, sf::RenderWindow* window, sf::Font* font, std::string message) 
+: 
+UIMenu(size, position, boxColor, outlineColor, outlineThickness, window),
+closeButton(sf::Vector2f(position.x + size.x - outlineThickness, size.y), sf::Vector2f(outlineThickness, outlineThickness), sf::Color(255,10,10), sf::Color(120,0,0), sf::Color(0,0,0), window, font, "X", outlineThickness) //<---LEFT HERE
+// So basically I need a folder of default fonts set up, to easily be able to use them. Additionally the people are gonna be so thankful, yaaay
+//title()
+{
+
 }
 
 gui::DefaultMenu::DefaultMenu(sf::Vector2f size, sf::Vector2f position, sf::Color boxColor, sf::Color outlineColor, float outlineThickness, sf::RenderWindow* window) 
 : 
 UIMenu(size, position, boxColor, outlineColor, outlineThickness, window),
-closeButton(sf::Vector2f(position.x + size.x - outlineThickness, size.y), sf::Vector2f(outlineThickness, outlineThickness), sf::Color(255,10,10), window) 
+closeButton(sf::Vector2f(position.x + size.x - outlineThickness, size.y), sf::Vector2f(outlineThickness, outlineThickness), sf::Color(255,10,10), sf::Color(120,0,0), window)
 {
-    
+
 }
